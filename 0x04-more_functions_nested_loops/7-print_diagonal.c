@@ -1,23 +1,35 @@
-#include "main.h"
+#include "holberton.h"
 
 /**
- * print_diagonal - prints diagonal line n times.
- * @n: times diagonal line is printed.
- * Return: no return.
- */
-void print_diagonal(int n)
+* print_number - prints # using _putchar function
+* @n: the integer to print
+*
+* Return: void
+*/
+void print_number(int n)
 {
-	int i, j;
+	int copy, nth, size = 1, ones = n % 10;
 
-	for (i = 0; i < n; i++)
+	n /= 10;
+	copy = n;
+	if (ones < 0)
 	{
-		for (j = 0; j < i; j++)
-		{
-			_putchar(' ');
-		}
-		_putchar(92);
-		if (i < (n - 1))
-			_putchar('\n');
+		ones *= -1, copy *= -1, n *= -1;
+		_putchar('-');
 	}
-	_putchar('\n');
+	if (copy > 0)
+	{
+		while (copy / 10 != 0)
+		{
+			copy /= 10, size *= 10;
+		}
+		while (size > 0)
+		{
+			nth = n / size;
+			_putchar('0' + nth);
+			n -= nth * size;
+			size /= 10;
+		}
+	}
+	_putchar('0' + ones);
 }
